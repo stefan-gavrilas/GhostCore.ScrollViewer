@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata minClientVersion="4.0">
+    <id>GhostCore.ScrollViewer</id>
+	<title>GhostCore.ScrollViewer</title>
+    <version>1.0.0</version>
+    <authors>Stefan Gavrilas, Ionut Popovici</authors>
+    <owners>Stefan Gavrilas, Ionut Popovici</owners>
+	<licenseUrl>https://creativecommons.org/licenses/by/4.0/</licenseUrl>
+	<iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Designed as a replacement for Microsoft's sealed ScrollViewer that captures mouse events and doesn't allow multiple inputs to children (e.g. two or more InkCanvases). Supports all the basic functions of a scrollviewer : horizontal/vertical panning and zooming.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>uwp scrollviewer scrollviewerex scrollcontentpresenterex zoom mousezoom</tags>
+  </metadata>
+  
+  <files>
+    <file src="..\bin\Release\GhostCore.ScrollViewer.dll" target="lib\uap10.0"/>
+    <file src="..\bin\Release\GhostCore.ScrollViewer.pdb" target="lib\uap10.0"/>
+    <file src="..\bin\Release\GhostCore.ScrollViewer.pri" target="lib\uap10.0"/>
+    <file src="..\Themes\Generic.xaml" target="lib\uap10.0\Themes"/>
+  </files>
+</package>
