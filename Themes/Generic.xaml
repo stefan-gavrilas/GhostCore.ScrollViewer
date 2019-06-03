@@ -26,7 +26,8 @@
                                                             ScrollableHeight="{TemplateBinding ScrollableHeight}"
                                                             ScrollWheelBehaviour="{TemplateBinding ScrollWheelBehaviour}"
                                                             OverrideMaximumMeasureWidth="{TemplateBinding OverrideMaximumMeasureWidth}"
-                                                            OverrideMaximumMeasureHeight="{TemplateBinding OverrideMaximumMeasureHeight}"/>
+                                                            OverrideMaximumMeasureHeight="{TemplateBinding OverrideMaximumMeasureHeight}"
+                                                            ZoomMode="{TemplateBinding ZoomMode}"/>
 
                             <ScrollBar x:Name="VerticalScrollBar"
                                        IndicatorMode="MouseIndicator"

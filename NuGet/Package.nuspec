@@ -3,7 +3,7 @@
   <metadata minClientVersion="4.0">
     <id>GhostCore.ScrollViewer</id>
 	<title>GhostCore.ScrollViewer</title>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>Stefan Gavrilas, Ionut Popovici</authors>
     <owners>Stefan Gavrilas, Ionut Popovici</owners>
 	<license type="expression">CC-BY-4.0</license>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<summary>Provides a custom UWP ScrollViewer - check description for more details.</summary>
     <description>Designed as a replacement for Microsoft's sealed ScrollViewer that captures mouse events and doesn't allow multiple inputs to children (e.g. two or more InkCanvases). Supports all the basic functions of a scrollviewer : horizontal/vertical panning and zooming.</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <releaseNotes>Added ViewChanged event, ChangeView method and ZoomMode property.</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>uwp scrollviewer scrollviewerex scrollcontentpresenterex zoom mousezoom</tags>
   </metadata>

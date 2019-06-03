@@ -14,6 +14,19 @@ namespace GhostCore.ScrollViewer
 {
     public class ScrollViewerEx : ContentControl
     {
+        #region Events
+
+        public event EventHandler<ScrollViewerViewChangedEventArgs> ViewChanged;
+        private void OnViewChanged(ScrollViewerViewChangedEventArgs args)
+        {
+            if (ViewChanged == null)
+                return;
+
+            ViewChanged(this, args);
+        }
+
+        #endregion
+
         #region Dependency Properties
 
         public static readonly DependencyProperty ZoomFactorProperty =
@@ -26,7 +39,7 @@ namespace GhostCore.ScrollViewer
             DependencyProperty.Register("HorizontalOffset", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
         public static readonly DependencyProperty VerticalOffsetProperty =
             DependencyProperty.Register("VerticalOffset", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
-        public static readonly DependencyProperty ScrollableWidthProperty = 
+        public static readonly DependencyProperty ScrollableWidthProperty =
             DependencyProperty.Register("ScrollableWidth", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
         public static readonly DependencyProperty ScrollableHeightProperty =
             DependencyProperty.Register("ScrollableHeight", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
@@ -40,6 +53,14 @@ namespace GhostCore.ScrollViewer
             DependencyProperty.Register("HorizontalScrollBarStyle", typeof(Style), typeof(ScrollViewerEx), new PropertyMetadata(null));
         public static readonly DependencyProperty VerticalScrollBarStyleProperty =
             DependencyProperty.Register("VerticalScrollBarStyle", typeof(Style), typeof(ScrollViewerEx), new PropertyMetadata(null));
+        public static readonly DependencyProperty ZoomModeProperty = 
+            DependencyProperty.Register("ZoomMode", typeof(ZoomMode), typeof(ScrollViewerEx), new PropertyMetadata(ZoomMode.Disabled));
+
+        #endregion
+
+        #region Fields
+
+        private ScrollContentPresenterEx _presenter;
 
         #endregion
 
@@ -105,6 +126,11 @@ namespace GhostCore.ScrollViewer
             get { return (Style)GetValue(VerticalScrollBarStyleProperty); }
             set { SetValue(VerticalScrollBarStyleProperty, value); }
         }
+        public ZoomMode ZoomMode
+        {
+            get { return (ZoomMode)GetValue(ZoomModeProperty); }
+            set { SetValue(ZoomModeProperty, value); }
+        }
 
         #endregion
 
@@ -113,6 +139,48 @@ namespace GhostCore.ScrollViewer
         public ScrollViewerEx()
         {
             DefaultStyleKey = typeof(ScrollViewerEx);
+            Unloaded += ScrollViewerEx_Unloaded;
+        }
+
+        #endregion
+
+        #region Overrides
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            _presenter = GetTemplateChild("scrollContentPresenter") as ScrollContentPresenterEx;
+
+            _presenter.ViewChanged += presenter_ViewChanged;
+        }
+
+        #endregion
+
+        #region API
+
+        public void ChangeView(double? horizontalOffset, double? verticalOffset, float? zoomFactor)
+        {
+            _presenter.ChangeView(horizontalOffset, verticalOffset, zoomFactor);
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private void presenter_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            OnViewChanged(e);
+        }
+
+        private void ScrollViewerEx_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Unloaded -= ScrollViewerEx_Unloaded;
+
+            if (_presenter != null)
+            {
+                _presenter.ViewChanged -= presenter_ViewChanged;
+            }
         }
 
         #endregion

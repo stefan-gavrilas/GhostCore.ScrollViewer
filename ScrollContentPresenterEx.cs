@@ -15,6 +15,19 @@ namespace GhostCore.ScrollViewer
 {
     public class ScrollContentPresenterEx : ContentControl
     {
+        #region Events
+
+        public event EventHandler<ScrollViewerViewChangedEventArgs> ViewChanged;
+        private void OnViewChanged()
+        {
+            if (ViewChanged == null)
+                return;
+
+            ViewChanged(this, new ScrollViewerViewChangedEventArgs());
+        }
+
+        #endregion
+
         #region Dependency Properties
 
         public static readonly DependencyProperty ZoomFactorProperty =
@@ -37,18 +50,26 @@ namespace GhostCore.ScrollViewer
             DependencyProperty.Register("OverrideMaximumMeasureWidth", typeof(double), typeof(ScrollViewerEx), new PropertyMetadata(double.PositiveInfinity));
         public static readonly DependencyProperty OverrideMaximumMeasureHeightProperty =
             DependencyProperty.Register("OverrideMaximumMeasureHeight", typeof(double), typeof(ScrollViewerEx), new PropertyMetadata(double.PositiveInfinity));
+        public static readonly DependencyProperty ZoomModeProperty = 
+            DependencyProperty.Register("ZoomMode", typeof(ZoomMode), typeof(ScrollViewerEx), new PropertyMetadata(ZoomMode.Disabled));
+        
         #endregion
 
         #region Dependency Property Changed
 
         private void OnZoomFactorChanged(DependencyPropertyChangedEventArgs e)
         {
+            if (ZoomMode == ZoomMode.Disabled)
+                return;
+
             var newVal = (float)e.NewValue;
 
             _visual.Scale = new Vector3(newVal, newVal, 1);
 
             ScrollableWidth = (int)(_childSize.Width * newVal);
             ScrollableHeight = (int)(_childSize.Height * newVal);
+
+            OnViewChanged();
         }
 
         private void OnHorizontalOffsetChanged(DependencyPropertyChangedEventArgs e)
@@ -60,6 +81,8 @@ namespace GhostCore.ScrollViewer
             var vox = x * (ActualWidth - scaledWidth) / scaledWidth;
 
             _visual.Offset = new Vector3((float)vox, _visual.Offset.Y, 0);
+
+            OnViewChanged();
         }
 
         private void OnVerticalOffsetChanged(DependencyPropertyChangedEventArgs e)
@@ -71,6 +94,8 @@ namespace GhostCore.ScrollViewer
             var voy = y * (ActualHeight - scaledHeight) / scaledHeight;
 
             _visual.Offset = new Vector3(_visual.Offset.X, (float)voy, 0);
+
+            OnViewChanged();
         }
 
         #endregion
@@ -135,6 +160,11 @@ namespace GhostCore.ScrollViewer
             get { return (double)GetValue(OverrideMaximumMeasureHeightProperty); }
             set { SetValue(OverrideMaximumMeasureHeightProperty, value); }
         }
+        public ZoomMode ZoomMode
+        {
+            get { return (ZoomMode)GetValue(ZoomModeProperty); }
+            set { SetValue(ZoomModeProperty, value); }
+        }
 
         #endregion
 
@@ -183,6 +213,22 @@ namespace GhostCore.ScrollViewer
             VerticalOffset = 0;
 
             return availableSize;
+        }
+
+        #endregion
+
+        #region API
+
+        public void ChangeView(double? horizontalOffset, double? verticalOffset, float? zoomFactor)
+        {
+            if (horizontalOffset != null)
+                HorizontalOffset = (int)horizontalOffset.Value;
+
+            if (verticalOffset != null)
+                VerticalOffset = (int)verticalOffset.Value;
+
+            if (zoomFactor != null)
+                ZoomFactor = zoomFactor.Value;
         }
 
         #endregion
