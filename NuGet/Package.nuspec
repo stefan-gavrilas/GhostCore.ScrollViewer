@@ -7,7 +7,7 @@
     <authors>Stefan Gavrilas, Ionut Popovici</authors>
     <owners>Stefan Gavrilas, Ionut Popovici</owners>
 	<licenseUrl>https://creativecommons.org/licenses/by/4.0/</licenseUrl>
-	<iconUrl></iconUrl>
+	<iconUrl>https://raw.githubusercontent.com/stefangabrielgavrilas/ghostcore.scrollviewer/master/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Designed as a replacement for Microsoft's sealed ScrollViewer that captures mouse events and doesn't allow multiple inputs to children (e.g. two or more InkCanvases). Supports all the basic functions of a scrollviewer : horizontal/vertical panning and zooming.</description>
     <releaseNotes>Initial release.</releaseNotes>
