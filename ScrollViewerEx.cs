@@ -30,21 +30,21 @@ namespace GhostCore.ScrollViewer
         #region Dependency Properties
 
         public static readonly DependencyProperty ZoomFactorProperty =
-            DependencyProperty.Register("ZoomFactor", typeof(float), typeof(ScrollContentPresenterEx), new PropertyMetadata(1F));
+            DependencyProperty.Register("ZoomFactor", typeof(float), typeof(ScrollViewerEx), new PropertyMetadata(1F));
         public static readonly DependencyProperty MinZoomFactorProperty =
-            DependencyProperty.Register("MinZoomFactor", typeof(float), typeof(ScrollContentPresenterEx), new PropertyMetadata(0.45F));
+            DependencyProperty.Register("MinZoomFactor", typeof(float), typeof(ScrollViewerEx), new PropertyMetadata(0.45F));
         public static readonly DependencyProperty MaxZoomFactorProperty =
-            DependencyProperty.Register("MaxZoomFactor", typeof(float), typeof(ScrollContentPresenterEx), new PropertyMetadata(1F));
+            DependencyProperty.Register("MaxZoomFactor", typeof(float), typeof(ScrollViewerEx), new PropertyMetadata(1F));
         public static readonly DependencyProperty HorizontalOffsetProperty =
-            DependencyProperty.Register("HorizontalOffset", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
+            DependencyProperty.Register("HorizontalOffset", typeof(int), typeof(ScrollViewerEx), new PropertyMetadata(0));
         public static readonly DependencyProperty VerticalOffsetProperty =
-            DependencyProperty.Register("VerticalOffset", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
+            DependencyProperty.Register("VerticalOffset", typeof(int), typeof(ScrollViewerEx), new PropertyMetadata(0));
         public static readonly DependencyProperty ScrollableWidthProperty =
-            DependencyProperty.Register("ScrollableWidth", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
+            DependencyProperty.Register("ScrollableWidth", typeof(int), typeof(ScrollViewerEx), new PropertyMetadata(0));
         public static readonly DependencyProperty ScrollableHeightProperty =
-            DependencyProperty.Register("ScrollableHeight", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0));
+            DependencyProperty.Register("ScrollableHeight", typeof(int), typeof(ScrollViewerEx), new PropertyMetadata(0));
         public static readonly DependencyProperty ScrollWheelBehaviourProperty =
-            DependencyProperty.Register("ScrollWheelBehaviour", typeof(ScrollWheelBehaviour), typeof(ScrollContentPresenterEx), new PropertyMetadata(ScrollWheelBehaviour.VerticalPan));
+            DependencyProperty.Register("ScrollWheelBehaviour", typeof(ScrollWheelBehaviour), typeof(ScrollViewerEx), new PropertyMetadata(ScrollWheelBehaviour.VerticalPan));
         public static readonly DependencyProperty OverrideMaximumMeasureWidthProperty =
             DependencyProperty.Register("OverrideMaximumMeasureWidth", typeof(double), typeof(ScrollViewerEx), new PropertyMetadata(double.PositiveInfinity));
         public static readonly DependencyProperty OverrideMaximumMeasureHeightProperty =

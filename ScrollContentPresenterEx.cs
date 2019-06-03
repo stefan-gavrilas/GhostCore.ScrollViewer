@@ -47,11 +47,11 @@ namespace GhostCore.ScrollViewer
         public static readonly DependencyProperty ScrollWheelBehaviourProperty =
             DependencyProperty.Register("ScrollWheelBehaviour", typeof(ScrollWheelBehaviour), typeof(ScrollContentPresenterEx), new PropertyMetadata(ScrollWheelBehaviour.VerticalPan));
         public static readonly DependencyProperty OverrideMaximumMeasureWidthProperty =
-            DependencyProperty.Register("OverrideMaximumMeasureWidth", typeof(double), typeof(ScrollViewerEx), new PropertyMetadata(double.PositiveInfinity));
+            DependencyProperty.Register("OverrideMaximumMeasureWidth", typeof(double), typeof(ScrollContentPresenterEx), new PropertyMetadata(double.PositiveInfinity));
         public static readonly DependencyProperty OverrideMaximumMeasureHeightProperty =
-            DependencyProperty.Register("OverrideMaximumMeasureHeight", typeof(double), typeof(ScrollViewerEx), new PropertyMetadata(double.PositiveInfinity));
+            DependencyProperty.Register("OverrideMaximumMeasureHeight", typeof(double), typeof(ScrollContentPresenterEx), new PropertyMetadata(double.PositiveInfinity));
         public static readonly DependencyProperty ZoomModeProperty = 
-            DependencyProperty.Register("ZoomMode", typeof(ZoomMode), typeof(ScrollViewerEx), new PropertyMetadata(ZoomMode.Disabled));
+            DependencyProperty.Register("ZoomMode", typeof(ZoomMode), typeof(ScrollContentPresenterEx), new PropertyMetadata(ZoomMode.Disabled));
         
         #endregion
 
