@@ -33,9 +33,9 @@ namespace GhostCore.ScrollViewer
         public static readonly DependencyProperty ZoomFactorProperty =
             DependencyProperty.Register("ZoomFactor", typeof(float), typeof(ScrollContentPresenterEx), new PropertyMetadata(1F, (d, e) => (d as ScrollContentPresenterEx).OnZoomFactorChanged(e)));
         public static readonly DependencyProperty MinZoomFactorProperty =
-            DependencyProperty.Register("MinZoomFactor", typeof(float), typeof(ScrollContentPresenterEx), new PropertyMetadata(0.45F));
+            DependencyProperty.Register("MinZoomFactor", typeof(double), typeof(ScrollContentPresenterEx), new PropertyMetadata(0.45F));
         public static readonly DependencyProperty MaxZoomFactorProperty =
-            DependencyProperty.Register("MaxZoomFactor", typeof(float), typeof(ScrollContentPresenterEx), new PropertyMetadata(1F));
+            DependencyProperty.Register("MaxZoomFactor", typeof(double), typeof(ScrollContentPresenterEx), new PropertyMetadata(1F));
         public static readonly DependencyProperty HorizontalOffsetProperty =
             DependencyProperty.Register("HorizontalOffset", typeof(int), typeof(ScrollContentPresenterEx), new PropertyMetadata(0, (d, e) => (d as ScrollContentPresenterEx).OnHorizontalOffsetChanged(e)));
         public static readonly DependencyProperty VerticalOffsetProperty =
@@ -115,14 +115,14 @@ namespace GhostCore.ScrollViewer
             get { return (float)GetValue(ZoomFactorProperty); }
             set { SetValue(ZoomFactorProperty, value); }
         }
-        public float MinZoomFactor
+        public double MinZoomFactor
         {
-            get { return (float)GetValue(MinZoomFactorProperty); }
+            get { return (double)GetValue(MinZoomFactorProperty); }
             set { SetValue(MinZoomFactorProperty, value); }
         }
-        public float MaxZoomFactor
+        public double MaxZoomFactor
         {
-            get { return (float)GetValue(MaxZoomFactorProperty); }
+            get { return (double)GetValue(MaxZoomFactorProperty); }
             set { SetValue(MaxZoomFactorProperty, value); }
         }
         public int HorizontalOffset
@@ -366,10 +366,10 @@ namespace GhostCore.ScrollViewer
         private float ClampScale(float newScale)
         {
             if (newScale > MaxZoomFactor)
-                newScale = MaxZoomFactor;
+                newScale = (float)MaxZoomFactor;
 
             if (newScale < MinZoomFactor)
-                newScale = MinZoomFactor;
+                newScale = (float)MinZoomFactor;
 
             return newScale;
         }
